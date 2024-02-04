@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
-<body class="bg-gray-200 dark:bg-abutua">
+<body class="bg-gray-200 dark:bg-gray-800">
     <header class="bg-gray-200 dark:bg-black">
         <div class="container">
             @include('shared.header')

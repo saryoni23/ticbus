@@ -14,7 +14,7 @@
 </li>
 <li>
     <a href="{{ route('datauser') }}"
-        class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75  dark:text-gray-200 dark:hover:bg-gray-700  bg-gray-100 dark:bg-gray-700 ">
+        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
         <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
             fill="currentColor" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
 
@@ -24,6 +24,19 @@
 
         </svg>
         <span class="ml-3" sidebar-toggle-item> User Control</span>
+    </a>
+</li>
+<li>
+    <a href="{{ route('databerita') }}"
+        class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75  dark:text-gray-200 dark:hover:bg-gray-700  bg-gray-100 dark:bg-gray-700 ">
+        <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd"
+                d="M5 3a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V7c0-.6-.4-1-1-1h-1a1 1 0 1 0 0 2v11h-2V5a2 2 0 0 0-2-2H5Zm7 4c0-.6.4-1 1-1h.5a1 1 0 1 1 0 2H13a1 1 0 0 1-1-1Zm0 3c0-.6.4-1 1-1h.5a1 1 0 1 1 0 2H13a1 1 0 0 1-1-1Zm-6 4c0-.6.4-1 1-1h6a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1Zm0 3c0-.6.4-1 1-1h6a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1ZM7 6a1 1 0 0 0-1 1v3c0 .6.4 1 1 1h3c.6 0 1-.4 1-1V7c0-.6-.4-1-1-1H7Zm1 3V8h1v1H8Z"
+                clip-rule="evenodd" />
+        </svg>
+
+        <span class="ml-3" sidebar-toggle-item>Kelola Berita</span>
     </a>
 </li>
 </ul>
@@ -155,8 +168,8 @@
                                         d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <a href="/usercontrol"
-                                    class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">Users</a>
+                                <a href="/databerita"
+                                    class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">Berita</a>
                             </div>
                         </li>
                         <li>
@@ -173,7 +186,7 @@
                         </li>
                     </ol>
                 </nav>
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">All users</h1>
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">All Berita</h1>
             </div>
             <div class="sm:flex">
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
@@ -209,7 +222,7 @@
                         <thead class="bg-gray-100 dark:bg-gray-700">
                             <tr>
                                 <th scope="col"
-                                    class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                    class=" text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                     NO</th>
                                 <th scope="col"
                                     class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -228,16 +241,8 @@
                         <tbody>
                             @foreach($berita as $item)
                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-neutral-700 ">
-                                <td class="flex items-center p-4 mr-1 space-x-2 whitespace-nowrap">
-                                    <div class="flex space-x-5 text-sm font-normal text-gray-500 dark:text-gray-400">
-                                        <div class="text-base font-semibold text-gray-900 dark:text-white">
-                                            {{  $loop->iteration }}
-                                        </div>
-                                        <div class=""><img class="w-11 h-11 rounded-full"
-                                                src="{{ asset('picture/accounts/'.Auth::user()->gambar) }}"
-                                                alt="avatar" />
-                                        </div>
-                                    </div>
+                                <td class=" overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-white">
+                                    {{  $loop->iteration }}
                                 </td>
                                 <td
                                     class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-white">
@@ -248,8 +253,8 @@
                                     {{  $item->isi  }}
                                 </td>
                                 <td
-                                    class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-white">
-                               
+                                    class="max-2xl: p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-white">
+                                    <img src="{{ asset('picture/berita') }}/{{ $item->image }}" alt="image" />
                                 </td>
 
                                 <td class="p-4 space-x-2 whitespace-nowrap">
@@ -266,7 +271,7 @@
                                                     d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                                                     clip-rule="evenodd"></path>
                                             </svg>
-                                            Edit user
+                                            Edit berita
                                         </button>
                                         <form action="/dphapus/{{ $item->id }}" method="post">
                                             @csrf
@@ -279,7 +284,7 @@
                                                         d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                         clip-rule="evenodd"></path>
                                                 </svg>
-                                                Delete user
+                                                Delete Berita
                                             </button>
                                         </form>
                                     </div>

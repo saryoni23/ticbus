@@ -17,14 +17,14 @@ class AuthMail extends Mailable
 
     public function __construct($details)
     {
-    $this->details= $details;
-
+        $this->details = $details;
     }
 
-    public function build(){
+    public function build()
+    {
         return $this->subject('Verifikasi Akun')->view('mail/verify');
     }
- 
+
     public function attachments(): array
     {
         return [];
