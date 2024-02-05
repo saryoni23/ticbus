@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
         'nomor',
         'gambar',
+        'tgllahir',
+        'is_active',
         'verify_key',
         'role'
 

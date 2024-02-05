@@ -10,6 +10,6 @@ class UserController extends Controller
     function index()
     {
         $data = mUserControl::all();
-        return view('pointakses/user/index', ['data' => $data]);
+        return view('halaman_user.index', ['data' => $data]);
     }
 }

@@ -88,6 +88,7 @@ class AuthController extends Controller
             'password'      => $request->password,
             'nomor'         => $request->nomor,
             'gambar'        => $nama_gambar,
+            'tgllahir'      => $request->tgllahir,
             'verify_key'    => $str
         ];
 

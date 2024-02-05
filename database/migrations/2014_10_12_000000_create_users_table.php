@@ -20,7 +20,9 @@ return new class extends Migration
             $table->enum('role',['admin','karyawan','user'])->default('user');
             $table->string('nomor');
             $table->string('gambar');
+            $table->date('tgllahir');
             $table->string('verify_key');
+            $table->boolean('is_active')->default('1');
             $table->rememberToken();
             $table->timestamps();
         });

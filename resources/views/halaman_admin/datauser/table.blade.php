@@ -127,7 +127,9 @@
         </style>
     </head>
 
-    <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
+    <body
+        class="bg-gray-100 text-gray-900 tracking-wider leading-normal dark:bg_"
+    >
         <!--Container-->
         <div class="container w-full md:w-4/5 xl:w-3/5 mx-auto px-2">
             <!--Title-->
