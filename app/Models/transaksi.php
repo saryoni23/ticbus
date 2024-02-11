@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class transaksi extends Model
 {
+    use HasFactory;
     public $table = 'tbl_transaksi';
     public $filltable = [
         'id',
@@ -17,9 +18,13 @@ class transaksi extends Model
         'tgl_pergi',
         'total_harga',
         'id_user',
-        'id_rute',
+        // 'id_rute',
         'waktu_pesan',
         'status',
     ];
     protected $hidden;
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

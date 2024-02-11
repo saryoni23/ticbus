@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/karyawan',         [KaryawanController::class, 'index'])->name('karyawan')->middleware('userAkses:karyawan');
 
     Route::get('/posts',            [BeritaController::class,   'index'])->name('tambahberita');
+    Route::get('/datauser/addUser', [AdminController::class,   'addUser'])->name('addUser')->middleware('userAkses:admin');
     Route::get('/table',            [AdminController::class,   'table'])->name('table')->middleware('userAkses:admin');
     Route::get('/databerita',       [AdminController::class,    'databerita'])->name('databerita')->middleware('userAkses:admin');
 

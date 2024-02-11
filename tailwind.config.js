@@ -1,5 +1,3 @@
-import plugin from "@tailwindcss/forms";
-
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
@@ -9,6 +7,20 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./node_modules/tw-elements/dist/js/**/*.js",
+    ],
+    safelist: [
+        "w-64",
+        "w-1/2",
+        "rounded-l-lg",
+        "rounded-r-lg",
+        "bg-gray-200",
+        "grid-cols-4",
+        "grid-cols-7",
+        "h-6",
+        "leading-6",
+        "h-9",
+        "leading-9",
+        "shadow-lg",
     ],
     darkMode: "class",
     theme: {
@@ -66,5 +78,5 @@ export default {
             },
         },
     },
-    plugins: [require("tw-elements/dist/plugin.cjs"), "flowbite/plugin"],
+    plugins: [require("tw-elements/dist/plugin.cjs")],
 };

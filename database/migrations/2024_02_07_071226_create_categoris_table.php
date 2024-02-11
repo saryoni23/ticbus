@@ -11,16 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_rute', function (Blueprint $table) {
+        Schema::create('tbl_categori', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('kota_asal');
-            $table->string('kota_tujuan');
-            $table->string('jam_berangkat');
-            $table->string('jam_tiba');
-            $table->string('kelas');
-            $table->string('seat');
-            $table->string('tarif');
-            $table->string('is_active');
+            $table->string('name_categori');
             $table->timestamps();
         });
     }
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_rute');
+        Schema::dropIfExists('tbl_categori');
     }
 };

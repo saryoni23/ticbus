@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\mUserControl;
+use App\Models\User;
 
 class UserController extends Controller
 {
     function index()
     {
-        $data = mUserControl::all();
+        $data = User::all();
         return view('halaman_user.index', ['data' => $data]);
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\DataPelanggan;
 use App\Models\User;
+use App\Models\transaksitiket;
 use Illuminate\Auth\Access\Response;
 
-class DataPelangganPolicy
+class TransaksitiketPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class DataPelangganPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, DataPelanggan $dataPelanggan): bool
+    public function view(User $user, transaksitiket $transaksitiket): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class DataPelangganPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, DataPelanggan $dataPelanggan): bool
+    public function update(User $user, transaksitiket $transaksitiket): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class DataPelangganPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, DataPelanggan $dataPelanggan): bool
+    public function delete(User $user, transaksitiket $transaksitiket): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class DataPelangganPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, DataPelanggan $dataPelanggan): bool
+    public function restore(User $user, transaksitiket $transaksitiket): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class DataPelangganPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, DataPelanggan $dataPelanggan): bool
+    public function forceDelete(User $user, transaksitiket $transaksitiket): bool
     {
         //
     }

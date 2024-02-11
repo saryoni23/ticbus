@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_berita', function (Blueprint $table) {
-            $table->id('id_berita')->unique();
-            $table->string('judul')->length(150);
+        Schema::create('tbl_artikel', function (Blueprint $table) {
+            $table->id()->unique();
+            $table->string('judul');
             $table->text('isi');
             $table->string('image');
             $table->boolean('is_active')->default('1');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('tbl_artikel');
     }
 };

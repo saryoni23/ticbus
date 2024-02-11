@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mUserControl extends Model
+class artikel extends Model
 {
     use HasFactory;
-    public $table = 'users';
+    public $table = 'tbl_artikel';
     public $filltable = [
         'id',
-        'fullname',
-        'email',
-        'role',
-        'nomor',
-        'gambar',
+        'judul',
+        'isi',
+        'image',
+        'is_active',
+        'created_at	',
+        'updated_at',
     ];
 }

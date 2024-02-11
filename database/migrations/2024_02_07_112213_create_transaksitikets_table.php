@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('interface', function (Blueprint $table) {
+        Schema::create('tbl_transaksitiket', function (Blueprint $table) {
             $table->id();
-            $table->string('nameapp');
-            $table->string('namealogo');
+            $table->unsignedBigInteger('tiket_id');
+            $table->string('qty');
+            $table->boolean('status')->nullable()->default(false);
             $table->timestamps();
+            $table->foreign('tiket_id')->references('id')->on('tbl_tic')->onDelete('cascade');
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('interface');
+        Schema::dropIfExists('transaksitiket');
     }
 };

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\artikel;
 use App\Models\berita;
 use Illuminate\Http\Request;
-use App\Models\mUserControl;
 use App\Models\User;
-use Database\Factories\MUserControlFactory;
+use Database\Factories\UserFactory;
 use Illuminate\Contracts\Session\Session;
 
 class AdminController extends Controller
@@ -17,17 +17,18 @@ class AdminController extends Controller
     }
     function settings()
     {
-        $data = mUserControl::all();
+        $data = User::all();
         return view('halaman_admin.setting', ['data' => $data]);
     }
     function datauser()
     {
-        $data = mUserControl::all();
+        $data = User::all();
         return view('halaman_admin.datauser.index', ['data' => $data]);
     }
-    function tambahuser()
+    function addUser()
     {
-        return view('halaman_admin.datauser.tambah');
+        $data = User::all();
+        return view('halaman_admin.modal.addUser', ['title' => 'Tambah User']);
     }
     function edituser($id)
     {
@@ -36,14 +37,14 @@ class AdminController extends Controller
     }
     function hapususer(Request $request)
     {
-        mUserControl::where('id', $request->id)->delete();
+        User::where('id', $request->id)->delete();
 
         return redirect('/datauser');
     }
     function databerita()
     {
-        $data = mUserControl::all();
-        $berita = berita::all();
+        $data = User::all();
+        $berita = artikel::all();
         return view('halaman_admin.pages.berita', ['berita' => $berita, 'data' => $data]);
     }
     function table()
