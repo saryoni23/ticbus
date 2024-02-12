@@ -114,23 +114,23 @@ class AdminController extends Controller
     function change(Request $request)
     {
         $request->validate([
-            'gambar' => 'image|file|max:1024',
-            'fullname' => 'required|min:4',
+            'fullname'  => 'required|min:4',
             'tgllahir'  =>  'required|date',
             'nomor'     =>  'required|min:9',
+            'gambar'    => 'image|file|max:1024',
 
 
         ], [
+            'fullname.required' => 'Nama Wajib Di isi',
+            'fullname.min' => 'Bidang nama minimal harus 4 karakter.',
             'gambar.image' => 'File Wajib Image',
             'gambar.file' => 'Wajib File',
             'gambar.max' => 'Bidang gambar tidak boleh lebih besar dari 1024 kilobyte',
-            'fullname.required' => 'Nama Wajib Di isi',
-            'fullname.min' => 'Bidang nama minimal harus 4 karakter.',
         ]);
 
 
-
         $user = User::find($request->id);
+
 
         if ($request->hasFile('gambar')) {
             $gambar_file = $request->file('gambar');
@@ -141,10 +141,15 @@ class AdminController extends Controller
         }
 
         $user->fullname = $request->fullname;
-        $user->fullname = $request->tgllahir;
-        $user->fullname = $request->nomor;
+        $user->tgllahir = $request->tgllahir;
+        $user->nomor    = $request->nomor;
         $user->password = $request->password;
+
+        // Simpan perubahan pada pengguna
         $user->save();
+
+
+
 
         Session::flash('success', 'User berhasil diedit');
 

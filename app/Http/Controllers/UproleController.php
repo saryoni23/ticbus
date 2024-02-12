@@ -17,4 +17,11 @@ class UproleController extends Controller
         $data->save();
         return redirect('/datauser')->with('success', 'Berhasil Mengubah Role.');
     }
+    function downrole($id)
+    {
+        $data = User::find($id);
+        $data->role = 'user';
+        $data->save();
+        return redirect('/datauser')->with('success', 'Berhasil Mengubah Role.');
+    }
 }

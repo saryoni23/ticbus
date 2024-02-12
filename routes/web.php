@@ -32,7 +32,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/sesi',             [AuthController::class, 'index'])->name('auth');
     Route::post('/sesi',            [AuthController::class, 'login']);
     Route::get('/reg',              [AuthController::class, 'create'])->name('registrasi');
-    Route::post('/reg',             [AuthController::class, 'register'])->name('registrasi');
+    Route::post('/reg',             [AuthController::class, 'register'])->name('register');
     Route::get('/verify/{verify_key}', [AuthController::class, 'verify']);
 });
 
@@ -46,12 +46,13 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/table',            [AdminController::class,    'table'])->name('table')->middleware('userAkses:admin');
     //Route Untuk Mengelola User
     Route::get('/datauser',         [AdminController::class,    'datauser'])->name('datauser')->middleware('userAkses:admin');
-    Route::get('/adduser',          [AdminController::class,    'tambah'])->name('adduser')->middleware('userAkses:admin');
-    Route::post('/adduser',          [AdminController::class,    'create'])->name('adduser')->middleware('userAkses:admin');
-    Route::get('/edituser/{id}',    [AdminController::class,    'edituser'])->name('edituser')->middleware('userAkses:admin');
-    Route::post('/edituser/{id}',    [AdminController::class,    'change'])->name('edituser')->middleware('userAkses:admin');
-    Route::post('/hapususer/{id}',  [AdminController::class,    'hapususer'])->name('hapususer')->middleware('userAkses:admin');
+    Route::get('/adduser',          [AdminController::class,    'tambah']);
+    Route::post('/adduser',          [AdminController::class,    'create']);
+    Route::get('/edituser/{id}',    [AdminController::class,    'edituser']);
+    Route::post('/edituser',       [AdminController::class,    'change']);
+    Route::post('/hapususer/{id}',  [AdminController::class,    'hapususer']);
     Route::post('/uprole/{id}',     [UproleController::class, 'uprole']);
+    Route::post('/downrole/{id}',     [UproleController::class, 'downrole']);
 
     //Route Untuk Mengelola Berita
     Route::get('/databerita',       [AdminController::class,    'databerita'])->name('databerita')->middleware('userAkses:admin');

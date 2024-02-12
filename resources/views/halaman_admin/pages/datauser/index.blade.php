@@ -13,7 +13,7 @@
     </a>
 </li>
 <li>
-    <a href="{{ route('datauser') }}"
+    <a href="/datauser"
         class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75  dark:text-gray-200 dark:hover:bg-gray-700  bg-gray-100 dark:bg-gray-700 ">
         <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
             fill="currentColor" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
@@ -165,7 +165,7 @@
     </div>
     <div class=" p-8 rounded shadow bg-white dark:bg-gray-800">
         <div class="w-full md:w-1/3 flex flex-col items-end ml-auto space-x-2 sm:space-x-3">
-            <a href="{{ route('adduser') }}"
+            <a href="/adduser"
                 class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 tombol-tambah">
                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true">
@@ -252,38 +252,26 @@
                                     {{ $item->tgllahir }}
                                 </td>
 
+
                                 <td class="p-4 space-x-2 whitespace-nowrap max-w-sm">
                                     <div
                                         class="text-sm text-gray-900 dark:text-white h-full inline-flex justify-between items-baseline space-x-2">
                                         <!-- Tampilkan peran pengguna -->
                                         <span
                                             class="text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded-md">{{ $item->role }}</span>
-                                        <!-- Tampilkan tombol edit dan hapus hanya jika peran adalah 'karyawan' atau 'user' -->
+
+                                        <!-- Tampilkan tombol Edit, Hapus, Up, dan Down sesuai dengan peran pengguna -->
                                         @if($item->role == 'admin')
-                                        <!-- Tidak ada tombol Edit dan Hapus -->
-                                        @else
-                                        <!-- Akhir pengecekan -->
+                                        <!-- Jika peran adalah admin, tidak ada tombol -->
                                         <div
                                             class="text-sm text-gray-900 dark:text-white h-full inline-flex justify-between items-baseline space-x-2">
-                                            <form
-                                                onsubmit="return confirm('Yakin ingin Mengangkat USER Menjadi ADMIN ?')"
-                                                class="d-inline" action="/uprole/{{ $item->id }}" method="POST">
-                                                @csrf
-                                                <button type="submit"
-                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-900">
-                                                    <svg class="w-4 h-4 text-gray-800 dark:text-white"
-                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none" viewBox="0 0 24 24">
-                                                        <path stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2"
-                                                            d="m16 17-4-4-4 4m8-6-4-4-4 4" />
-                                                    </svg>
-                                                    UP
-                                                </button>
-                                            </form>
-
-
-                                            <!-- Tombol Edit -->
+                                            <span class="text-sm font-medium text-gray-500">Tidak ada aksi yang
+                                                tersedia</span>
+                                        </div>
+                                        @elseif($item->role == 'karyawan')
+                                        <!-- Jika peran adalah karyawan, tampilkan tombol Edit, Hapus, dan Down -->
+                                        <div
+                                            class="text-sm text-gray-900 dark:text-white h-full inline-flex justify-between items-baseline space-x-2">
                                             <a href="/edituser/{{ $item->id }}"
                                                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
@@ -297,7 +285,65 @@
                                                 </svg>
                                                 Edit
                                             </a>
-                                            <!-- Tombol Hapus -->
+                                            <form onsubmit="return confirmHapus(event)"
+                                                action="/hapususer/{{ $item->id }}" method="POST"
+                                                class="inline-flex items-center">
+                                                @csrf
+                                                {{ method_field('DELETE') }}
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit"
+                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-700 dark:hover:bg-red-800 dark:focus:ring-red-900">
+                                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                            <form id="form-downrole-{{ $item->id }}" action="/downrole/{{ $item->id }}" method="POST">
+                                                @csrf
+                                                <button type="button" onclick="confirmDown({{ $item->id }})"
+                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                                                    <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                            d="m16 7-4 4-4-4m8 6-4 4-4-4" />
+                                                    </svg>
+                                                    Down
+                                                </button>
+                                            </form>
+                                        </div>
+                                        @else
+                                        <!-- Jika peran adalah user, tampilkan tombol Up, Edit, dan Hapus -->
+                                        <div
+                                            class="text-sm text-gray-900 dark:text-white h-full inline-flex justify-between items-baseline space-x-2">
+                                            <form id="form-uprole-{{ $item->id }}" action="/uprole/{{ $item->id }}" method="POST">
+                                                @csrf
+                                                <button type="button" onclick="confirmUp({{ $item->id }})"
+                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-900">
+                                                    <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                            d="m16 17-4-4-4 4m8-6-4-4-4 4" />
+                                                    </svg>
+                                                    Up
+                                                </button>
+                                            </form>
+                                            <a href="/edituser/{{ $item->id }}"
+                                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
+                                                    </path>
+                                                    <path fill-rule="evenodd"
+                                                        d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                        clip-rule="evenodd"></path>
+                                                </svg>
+                                                Edit
+                                            </a>
                                             <form onsubmit="return confirmHapus(event)"
                                                 action="/hapususer/{{ $item->id }}" method="POST"
                                                 class="inline-flex items-center">
@@ -314,9 +360,11 @@
                                                     Hapus
                                                 </button>
                                             </form>
-                                            @endif
                                         </div>
+                                        @endif
+                                    </div>
                                 </td>
+
 
                             </tr>
                             @endforeach
@@ -327,9 +375,9 @@
                 <div class="tampilData" style="display: none;"></div>
             </div>
         </div>
+
     </div>
 </main>
-
 
 
 <!-- jQuery -->
@@ -356,8 +404,38 @@
             }
         });
     }
+    function confirmUp(itemId) {
+        Swal.fire({
+            title: 'Yakin ingin Mengangkat User Menjadi Karyawan?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('form-uprole-' + itemId).submit(); // Submit form jika pengguna menekan "Ya"
+            }
+        });
+    }
+    function confirmDown(itemId) {
+        Swal.fire({
+            title: 'Yakin ingin Menurunkan Karyawan Menjadi User?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('form-downrole-' + itemId).submit(); // Submit form jika pengguna menekan "Ya"
+            }
+        });
+    }
+    
 
 </script>
-
 
 @endif

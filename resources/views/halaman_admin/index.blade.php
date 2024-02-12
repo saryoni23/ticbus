@@ -14,7 +14,7 @@
     </a>
 </li>
 <li>
-    <a href="{{ route('datauser') }}"
+    <a href="/datauser"
         class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
         <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
             fill="currentColor" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@
     </a>
 </li>
 <li>
-    <a href="{{ route('databerita') }}"
+    <a href="/databerita"
         class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
         <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -55,7 +55,7 @@
         </a>
     </li>
     <li>
-        <a href="{{ route('kelolaprofil') }}"
+        <a href="/kelolaprofil"
             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group ">
     
               <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

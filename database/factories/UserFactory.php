@@ -18,6 +18,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $phoneNumber = '08' . mt_rand(100000000, 999999999);
         $roles = ['admin', 'karyawan', 'user'];
         return [
             'fullname'          => fake()->name(),
@@ -25,8 +26,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password'          => '$2y$10$Lli9zOMRwhVKfYfIaPGtDOTlmUVvE49p9lzLU11hwAuqDSmbjuodW', // password
             'role'              => $this->faker->randomElement($roles),
-            'nomor'             => Str::random(12),
-            'gambar'            => '240201080800.png',
+            'nomor'             => $phoneNumber,
+            'gambar'            => 'user.png',
             'tgllahir'          => $this->faker->date('Y-m-d'),
             'verify_key'        => 'duCrLr3XHSVWVLVGEYOujmGfUGSRPk4phHEWaSV2n1zUa1xaL8XJvanBKFan05SxYFeakvOWDXxPl2tMfFggk6WUut5pnvYr3cjm',
             'remember_token'    => Str::random(10),
