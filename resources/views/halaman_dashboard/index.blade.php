@@ -8,17 +8,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ Auth::user()->role }} Panel</title>
     <link rel="icon" href="{{ asset('picture/logo/logo1.png') }}" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.tailwindcss.min.css">
-    <!--Regular Datatables CSS-->
-    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <!--Responsive Extension Datatables CSS-->
-    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet" />
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
-<body class="bg-gray-200 dark:bg-slate-600">
+<body class="bg-gray-200 dark:bg-gray-900  h-full">
     <header class="bg-gray-200 dark:bg-gray-900">
         <nav
             class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
@@ -268,11 +263,11 @@
 </body>
 </head>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/dataTables.tailwindcss.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.tailwindcss.js"></script> -->
 
 </html>

@@ -6,18 +6,20 @@
                 href="#"
                 class="flex justify-center items-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white"
             >
+            @foreach ($logos as $logo)
                 <img
                     class="h-8 mr-3"
-                    src="{{ asset('picture/logo/logo1.png') }}"
+                    src="{{ asset('picture/logo/'.$logo->logo) }}"
                     alt="Logo"
                 />
-                Moria
+                {{ $logo->singkatan_namausaha }}
+
             </a>
+            @endforeach
             <span
                 class="block text-sm text-center text-gray-500 dark:text-gray-400"
                 >© {{ date("Y") }}
-                <a href="#" class="hover:underline">Saryoni™</a>| Pt. Moria
-                Unedo Jaya.
+                <a href="#" class="hover:underline">Saryoni™</a>| {{ $logo->nama_perusahaan }}.
             </span>
             <ul class="flex justify-center mt-5 space-x-5">
                 <li>

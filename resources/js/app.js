@@ -1,6 +1,7 @@
 import "./bootstrap";
 import "flowbite";
 import "./carousel";
+import "./datepicker";
 // import "./jquery";
 
 // import "./app.bundle"

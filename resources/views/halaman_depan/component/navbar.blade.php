@@ -2,11 +2,13 @@
 <header x-data="{openSidebar:false}" class="absolute inset-x-0 top-0 z-50 mx-auto max-w-screen-xl">
     <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
+            @foreach ($logos as $logo)
             <a href="/" class="flex items-center">
-                <img class="h-8 mr-3" src="{{ asset('picture/logo/logo1.png') }}" alt="Logo" />
+                <img class="h-8 mr-3" src="{{ asset('picture/logo/'.$logo->logo) }}" alt="Logo" />
                 <span
-                    class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 dark:text-white">Moria</span>
+                    class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 dark:text-white">{{ $logo->singkatan_namausaha }}</span>
             </a>
+            @endforeach
         </div>
         <div class="flex lg:hidden">
             <button @click="openSidebar=true" type="button"

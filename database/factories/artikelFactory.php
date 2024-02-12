@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -18,9 +19,14 @@ class artikelFactory extends Factory
     public function definition(): array
     {
         return [
-            'judul' => $this->faker->name(),
-            'isi'   => Str::random(10),
-            'image' => Str::random(10),
+            'judul' => $this->faker->sentence(),
+            'isi'   => $this->faker->paragraph(5, true),
+            'image' => 'download.jpg',
+            'user_id' => function () {
+                // return categori::all()->random();
+                return User::inRandomOrder()->first()->id;
+            },
+
         ];
     }
 }

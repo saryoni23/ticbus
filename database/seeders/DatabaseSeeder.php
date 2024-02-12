@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\tiket::factory(20)->create();
         // \App\Models\rute::factory(20)->create();
         // \App\Models\transaksi::factory(20)->create();
-        \App\Models\transaksitiket::factory(20)->create();
+        // \App\Models\transaksitiket::factory(20)->create();
+        \App\Models\User::factory(10)->create();
     }
 }

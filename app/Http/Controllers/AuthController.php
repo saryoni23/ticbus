@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\AuthMail;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -57,16 +58,19 @@ class AuthController extends Controller
     }
     function register(Request $request)
     {
+
         $str = Str::random(100);
         $request->validate([
             'fullname'  =>  'required|min:5',
             'email'     =>  'required|unique:users|email',
             'password'  =>  'required|min:5',
             'nomor'     =>  'required|min:9',
+            'tgllahir'  =>  'required|date',
             'gambar'    =>  'required|image|file'
         ], [
             'fullname.required'     =>  'Full Name Wajib Diisi',
             'fullname.min'          =>  'Full Name Minimal 5 Karakter',
+            'tgllahir.required'     =>  'Tanggal Lahir Wajib Diisi',
             'email.required'        =>  'Email Wajib Diisi',
             'email.unique'          =>  'Email Sudah Terdaftar',
             'password.required'     =>  'Password Wajib Diisi',
@@ -76,6 +80,10 @@ class AuthController extends Controller
             'gambar.image'          =>  'Gambar yang di Upload Harus Image',
             'gambar.file'           =>  'Gambar Harus Berupa File',
         ]);
+
+        // Mengonversi tanggal ke format Y-m-d
+        $formattedDate = date('Y-m-d', strtotime($request->tgllahir));
+
 
         $gambar_file        = $request->file('gambar');
         $gambar_ekstensi    = $gambar_file->extension();
@@ -88,7 +96,7 @@ class AuthController extends Controller
             'password'      => $request->password,
             'nomor'         => $request->nomor,
             'gambar'        => $nama_gambar,
-            'tgllahir'      => $request->tgllahir,
+            'tgllahir'      => $formattedDate,
             'verify_key'    => $str
         ];
 

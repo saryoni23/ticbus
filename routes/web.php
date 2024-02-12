@@ -3,8 +3,8 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\UproleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,15 +42,24 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user',             [UserController::class,     'index'])->name('user')->middleware('userAkses:user');
     Route::get('/karyawan',         [KaryawanController::class, 'index'])->name('karyawan')->middleware('userAkses:karyawan');
 
-    Route::get('/posts',            [BeritaController::class,   'index'])->name('tambahberita');
-    Route::get('/datauser/addUser', [AdminController::class,   'addUser'])->name('addUser')->middleware('userAkses:admin');
-    Route::get('/table',            [AdminController::class,   'table'])->name('table')->middleware('userAkses:admin');
-    Route::get('/databerita',       [AdminController::class,    'databerita'])->name('databerita')->middleware('userAkses:admin');
 
+    // Route::get('/table',            [AdminController::class,    'table'])->name('table')->middleware('userAkses:admin');
+    //Route Untuk Mengelola User
     Route::get('/datauser',         [AdminController::class,    'datauser'])->name('datauser')->middleware('userAkses:admin');
-    Route::get('/tambahuser',       [AdminController::class,    'tambahuser'])->name('tambahuser')->middleware('userAkses:admin');
+    Route::get('/adduser',          [AdminController::class,    'tambah'])->name('adduser')->middleware('userAkses:admin');
+    Route::post('/adduser',          [AdminController::class,    'create'])->name('adduser')->middleware('userAkses:admin');
     Route::get('/edituser/{id}',    [AdminController::class,    'edituser'])->name('edituser')->middleware('userAkses:admin');
+    Route::post('/edituser/{id}',    [AdminController::class,    'change'])->name('edituser')->middleware('userAkses:admin');
     Route::post('/hapususer/{id}',  [AdminController::class,    'hapususer'])->name('hapususer')->middleware('userAkses:admin');
+    Route::post('/uprole/{id}',     [UproleController::class, 'uprole']);
 
+    //Route Untuk Mengelola Berita
+    Route::get('/databerita',       [AdminController::class,    'databerita'])->name('databerita')->middleware('userAkses:admin');
+    Route::get('/tambahberita',     [AdminController::class,    'tambahberita'])->name('tambahberita')->middleware('userAkses:admin');
+    Route::get('/editberita/{id}',  [AdminController::class,    'editberita'])->name('editberita')->middleware('userAkses:admin');
+    Route::post('/hapusberita/{id}', [AdminController::class,    'hapusberita'])->name('hapusberita')->middleware('userAkses:admin');
+
+    //Route Untuk Mengelola Profil Halaman Perusahaan
+    Route::get('/kelolaprofil',     [AdminController::class,    'kelolaprofil'])->name('kelolaprofil')->middleware('userAkses:admin');
     Route::post('/logout',          [AuthController::class,     'logout'])->name('logout');
 });

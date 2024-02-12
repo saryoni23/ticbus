@@ -54,6 +54,18 @@
             <span class="ml-3">Docs</span>
         </a>
     </li>
+    <li>
+        <a href="{{ route('kelolaprofil') }}"
+            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group ">
+    
+              <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13v-2a1 1 0 0 0-1-1h-.8l-.7-1.7.6-.5a1 1 0 0 0 0-1.5L17.7 5a1 1 0 0 0-1.5 0l-.5.6-1.7-.7V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.8l-1.7.7-.5-.6a1 1 0 0 0-1.5 0L5 6.3a1 1 0 0 0 0 1.5l.6.5-.7 1.7H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.8l.7 1.7-.6.5a1 1 0 0 0 0 1.5L6.3 19a1 1 0 0 0 1.5 0l.5-.6 1.7.7v.8a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.8l1.7-.7.5.6a1 1 0 0 0 1.5 0l1.4-1.4a1 1 0 0 0 0-1.5l-.6-.5.7-1.7h.8a1 1 0 0 0 1-1Z"/>
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+              </svg>
+    
+            <span class="ml-3" sidebar-toggle-item>Kelola Profil Usaha</span>
+        </a>
+    </li>
 </ul>
 </div>
 
@@ -62,8 +74,9 @@
 @endsection()
 
 @section('main')
-<main class="p-4 md:ml-64 h-auto pt-20 bg-gray-200 dark:bg-gray-900">
-    <div class="mb-4">
+<main class="p-4 md:ml-64 h-full pt-20 bg-gray-200 dark:bg-gray-900">
+
+    <div class="mb-10">
         <nav class="flex mb-5" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
                 <li class="inline-flex items-center">
@@ -92,51 +105,65 @@
         </nav>
         <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">Selamat Datang
             <span>{{ Auth::user()->fullname}}</span></h1>
-        <h4 class="text-sm font-semibold text-gray-900 sm:text-lg dark:text-white">Dashboard Sistem Pemesanan dan
-            Pembayaran Tiket Bus</h4>
+        <!-- <h4 class="text-sm font-semibold text-gray-900 sm:text-lg dark:text-white">Dashboard Sistem Pemesanan dan
+            Pembayaran Tiket Bus</h4> -->
     </div>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72">
-            <div class="h-full inline-flex justify-center items-start">
+    <div class="grid grid-rows-3 gap-10 max-h-full ">
 
-
-                <a href=""><svg class="w-20 h-20 text-gray-500 dark:text-white" aria-hidden="true"
+        <div class="h-auto flex flex-row justify-start items-start gap-2">
+            <article
+                class="p-6 justify-items-center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <a href="" type="button"
+                    class="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-white rounded-lg hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-400 dark:focus:ring-gray-800">
+                    <svg class="w-20 h-20 text-gray-900 dark:text-white" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M4 5a2 2 0 0 0-2 2v2.5c0 .6.4 1 1 1a1.5 1.5 0 1 1 0 3 1 1 0 0 0-1 1V17a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a1 1 0 0 0-1-1 1.5 1.5 0 1 1 0-3 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2H4Z" />
-                    </svg>Tiket</a>
-
-                <h5>
-                    Flex item 2
-                </h5>
-
-                <h5>
-                    Flex item 3
-                </h5>
-
-            </div>
+                    </svg>
+                    <span class="sr-only">Notifications</span>
+                    <div
+                        class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-0 -end-0 dark:border-gray-900">
+                        20</div>
+                </a>
+                <h2 class="mb-2 text-2xl font-bold text-center tracking-tight text-gray-900 dark:text-white"><a
+                        href="#">Tiket</a></h2>
+            </article>
+            <article
+                class="p-6 justify-items-center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <a href="" type="button"
+                    class="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-white rounded-lg hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-400 dark:focus:ring-gray-800">
+                    <svg class="w-20 h-20 text-gray-900 dark:text-white" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M4 5a2 2 0 0 0-2 2v2.5c0 .6.4 1 1 1a1.5 1.5 0 1 1 0 3 1 1 0 0 0-1 1V17a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a1 1 0 0 0-1-1 1.5 1.5 0 1 1 0-3 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2H4Z" />
+                    </svg>
+                    <span class="sr-only">Notifications</span>
+                    <div
+                        class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-0 -end-0 dark:border-gray-900">
+                        20</div>
+                </a>
+                <h2 class="mb-2 text-2xl font-bold text-center tracking-tight text-gray-900 dark:text-white"><a
+                        href="#">Tiket</a></h2>
+            </article>
+            <article
+                class="p-6 justify-items-center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <a href="" type="button"
+                    class="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-white rounded-lg hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-400 dark:focus:ring-gray-800">
+                    <svg class="w-20 h-20 text-gray-900 dark:text-white" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M4 5a2 2 0 0 0-2 2v2.5c0 .6.4 1 1 1a1.5 1.5 0 1 1 0 3 1 1 0 0 0-1 1V17a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a1 1 0 0 0-1-1 1.5 1.5 0 1 1 0-3 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2H4Z" />
+                    </svg>
+                    <span class="sr-only">Notifications</span>
+                    <div
+                        class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-0 -end-0 dark:border-gray-900">
+                        20</div>
+                </a>
+                <h2 class="mb-2 text-2xl font-bold text-center tracking-tight text-gray-900 dark:text-white"><a
+                        href="#">Tiket</a></h2>
+            </article>
 
         </div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-    </div>
-    <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4">
-
-
-    </div>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-    </div>
-    <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"></div>
-    <div class="grid grid-cols-2 gap-4">
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
-        <div class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
     </div>
 </main>
 @endsection

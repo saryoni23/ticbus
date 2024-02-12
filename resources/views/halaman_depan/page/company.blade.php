@@ -81,50 +81,19 @@
             </span>
         </button>
     </div>
+    @foreach ($data as $data)
     <div class="text-center">
         <h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
-            PT. Moria Unedo Jaya
+            {{ $data->nama_perusahaan }}
         </h1>
         <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-            Perusahaan yang bergerak dibidang jasa transportasi
-            di kota Medan. Kini bus moria telah berbentuk
-            perusahaan dengan nama PT. Moria Unedo Jaya.
+            {{ $data->visi }}
         </p>
         <p class="font-medium text-justify text-secondary mb-10 leading-relaxed dark:text-slate-300">
-            Secara umum, trayek bus moria adalah dari Medan ke
-            daerah Toba sekitarnya seperti Sipahutar,
-            Pangaribuan, Garoga, Sigotom, Lumbansinaga, dan
-            Simangimbar. Tarif ongkos bus moria dari Medan ke
-            Pangaribuan adalah Rp. 100.000. Tarif ongkos
-            bervariasi tergantung daerah tujuan Anda. Mayoritas
-            bus-bus moria telah terpasang AC. Sehingga membuat
-            penumpang merasa sejuk berada didalam bus sepanjang
-            perjalanan. Jika anda mau beli tiket Moria dapat
-            pulang kampung bersama bus Moria, silahkan datang
-            langsung ke alamat Loket Moria yang beralamat di:
-            Jl. Sisingamangaraja KM 7,5 No. 61B, Harjosari II,
-            Kec. Medan Amplas, Kota Medan. Untuk info lebih
-            lanjut silahkan telp nomor berikut: 0811-6323-262.
-            Loket bus Moria di Medan keberadaanya cukup besar.
-            Dilengkapi toilet yang cukup baik, parkir luas dan
-            gratis serta ada tempat makan/minum. Pada umumnya,
-            fasilitas gantungan tas, tong sampah sepertinya
-            harus ditambah di kamar mandi. Banyak para taksi
-            online dan ojek online yang mendapat orderan di
-            loket Moria medan. Para supir bus moria sudah
-            berpengalaman dalam mengantar penumpang dan barang
-            sampai ketujuan. Selain bus penumpang, bus moria
-            juga melayani pengiriman paket/barang dengan ongkos
-            yang relatif terjangkau dan aman. Dari Medan ke
-            daerah Toba, akan beristirahat di loket Siantar.
-            Disanalah penumpang bisa makan siang dan
-            beristirahat sejenak. Jadwal keberangkatan bus Moria
-            Medan ke toba mulai dari jam 7.00 pagi hingga jam
-            11.00 Wib. Untuk keberangkatan sore dan malam hari
-            tersedia jam keberangkatan mulai jam 16.00 hingga
-            jam 20.00Wib.
+            {{ $data->isi }}
         </p>
     </div>
+    @endforeach
 </div>
 
 @endsection
