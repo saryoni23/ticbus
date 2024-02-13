@@ -11,9 +11,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AuthMail;
 
-
-
-
 use function Laravel\Prompts\alert;
 
 class AdminController extends Controller
@@ -21,7 +18,7 @@ class AdminController extends Controller
     //mengelola User
     function index()
     {
-        return view('halaman_admin.index');
+        return view('halaman_admin.pages.home.index');
     }
     function settings()
     {

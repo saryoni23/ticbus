@@ -63,4 +63,6 @@ Route::middleware(['auth'])->group(function () {
     //Route Untuk Mengelola Profil Halaman Perusahaan
     Route::get('/kelolaprofil',     [AdminController::class,    'kelolaprofil'])->name('kelolaprofil')->middleware('userAkses:admin');
     Route::post('/logout',          [AuthController::class,     'logout'])->name('logout');
+
+    Route::resource('/berita', \App\Http\Controllers\AdminController::class);
 });
