@@ -288,7 +288,7 @@
                                                 Edit
                                             </a>
                                             <form onsubmit="return confirmHapus(event)"
-                                                action="/hapususer/{{ $item->id }}" method="POST"
+                                                action="{{ route('datauser.destroy', $item->id) }}" method="DELETE"
                                                 class="inline-flex items-center">
                                                 @csrf
                                                 <input type="hidden" name="_method" value="DELETE">
@@ -301,6 +301,13 @@
                                                             clip-rule="evenodd"></path>
                                                     </svg>
                                                     Hapus
+                                                </button>
+                                                @csrf @method('DELETE')
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-sm btn-danger"
+                                                >
+                                                    HAPUS
                                                 </button>
                                             </form>
                                         </div>

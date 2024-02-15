@@ -86,14 +86,32 @@
         <h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
             {{ $data->nama_perusahaan }}
         </h1>
-        <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-            {{ $data->visi }}
-        </p>
-        <p class="font-medium text-justify text-secondary mb-10 leading-relaxed dark:text-slate-300">
-            {{ $data->isi }}
-        </p>
+        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+            {!! strip_tags($data->visi, '<strong><em><span>
+                        <div>') !!}
+        </h1>
+        <div id="tambahstyle">
+            <p class="lead  ">
+                {!! $data->isi !!}
+            </p>
+        </div>
     </div>
     @endforeach
 </div>
 
+
 @endsection
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Temukan elemen dengan id 'tambahstyle'
+        var element = document.getElementById('tambahstyle');
+
+        // Periksa jika elemen ditemukan
+        if (element) {
+            // Tambahkan class yang diinginkan
+            element.classList.add('text-gray-900', 'dark:text-white');
+        }
+    });
+
+</script>

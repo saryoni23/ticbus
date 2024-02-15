@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_gambar', function (Blueprint $table) {
+        Schema::create('image_models', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->unsignedBigInteger('profil_id');
             $table->timestamps();
-            $table->foreign('profil_id')->references('id')->on('tbl_profilusaha')->onDelete('cascade');
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_gambar');
+        Schema::dropIfExists('image_models');
     }
 };

@@ -8,6 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ Auth::user()->role }} Panel</title>
     <link rel="icon" href="{{ asset('picture/logo/logo1.png') }}" />
+    <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        />
 
 
     @vite(['resources/css/app.css','resources/js/app.js'])
@@ -247,13 +251,13 @@
                     <li>
                         <button
                             type="button"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-400 dark:text-gray-200 dark:hover:bg-gray-700 {{ request()->routeIs('datauser', 'adduser') ? 'font-medium text-gray-900 dark:text-gray-100 bg-gray-400 dark:bg-gray-600' : '' }}"
+                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-400 dark:text-gray-200 dark:hover:bg-gray-700 {{ request()->routeIs('datauser.index', 'datauser.create') ? 'font-medium text-gray-900 dark:text-gray-100 bg-gray-400 dark:bg-gray-600' : '' }}"
                             aria-controls="dropdown-layouts"
                             data-collapse-toggle="dropdown-layouts"
                             aria-expanded="false"
                         >
                             <svg
-                                class="w-6 h-6  text-gray-500 transition duration-75{{ request()->routeIs('datauser', 'adduser') ? 'font-medium text-gray-900 dark:text-gray-100  ' : '' }}"
+                                class="w-6 h-6  text-gray-500 transition duration-75{{ request()->routeIs('datauser.index', 'datauser.create') ? 'font-medium text-gray-900 dark:text-gray-100  ' : '' }}"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -285,12 +289,12 @@
                         </button>
                         <ul
                             id="dropdown-layouts"
-                            class="py-2 space-y-2 {{ request()->routeIs('datauser', 'adduser') ? 'block' : 'hidden' }}"
+                            class="py-2 space-y-2 {{ request()->routeIs('datauser.index', 'datauser.create') ? 'block' : 'hidden' }}"
                         >
                             <li>
                                 <a
-                                    href="{{ route('datauser') }}"
-                                    class="flex items-center p-2 text-base text-gray-900 rounded-lg transition duration-75 hover:bg-gray-400 dark:hover:bg-gray-700 dark:text-white group {{ request()->routeIs('datauser') ? 'bg-gray-400 dark:bg-gray-600 font-medium' : '' }}"
+                                    href="{{ route('datauser.index') }}"
+                                    class="flex items-center p-2 text-base text-gray-900 rounded-lg transition duration-75 hover:bg-gray-400 dark:hover:bg-gray-700 dark:text-white group {{ request()->routeIs('datauser.index') ? 'bg-gray-400 dark:bg-gray-600 font-medium' : '' }}"
                                 >
                                     <svg
                                         class="w-6 h-6  text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white {{ request()->routeIs('datauser') ? 'text-gray-800 dark:text-white' : '' }}"
@@ -309,11 +313,11 @@
                             </li>
                             <li>
                                 <a
-                                    href="{{ route('adduser') }}"
-                                    class="flex items-center p-2 text-base text-gray-900 rounded-lg transition duration-75 hover:bg-gray-400 dark:hover:bg-gray-700 dark:text-white group {{ request()->routeIs('adduser') ? 'bg-gray-400 dark:bg-gray-600 font-medium' : '' }}"
+                                    href="{{ route('datauser.create') }}"
+                                    class="flex items-center p-2 text-base text-gray-900 rounded-lg transition duration-75 hover:bg-gray-400 dark:hover:bg-gray-700 dark:text-white group {{ request()->routeIs('datauser.create') ? 'bg-gray-400 dark:bg-gray-600 font-medium' : '' }}"
                                 >
                                     <svg
-                                        class="w-6 h-6  text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white {{ request()->routeIs('adduser') ? 'text-gray-800 dark:text-white' : '' }} "
+                                        class="w-6 h-6  text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white {{ request()->routeIs('datauser.create') ? 'text-gray-800 dark:text-white' : '' }} "
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
@@ -337,13 +341,13 @@
                     <li>
                         <button
                             type="button"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-400 dark:text-gray-200 dark:hover:bg-gray-700 {{ request()->routeIs('databerita','addartikel') ? 'font-medium text-gray-900 dark:text-gray-100 bg-gray-400 dark:bg-gray-600' : '' }}"
+                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-400 dark:text-gray-200 dark:hover:bg-gray-700 {{ request()->routeIs('berita.index','berita.create') ? 'font-medium text-gray-900 dark:text-gray-100 bg-gray-400 dark:bg-gray-600' : '' }}"
                             aria-controls="dropdown-layouts4"
                             data-collapse-toggle="dropdown-layouts4"
                             aria-expanded="false"
                         >
                             <svg
-                                class="w-6 h-6  text-gray-500 transition duration-75{{ request()->routeIs('databerita', 'addartikel') ? 'font-medium text-gray-900 dark:text-gray-100  dark:bg-gray-600' : '' }}"
+                                class="w-6 h-6  text-gray-500 transition duration-75{{ request()->routeIs('berita.index','berita.create') ? 'font-medium text-gray-900 dark:text-gray-100  dark:bg-gray-600' : '' }}"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -378,15 +382,15 @@
                         </button>
                         <ul
                             id="dropdown-layouts4"
-                            class="py-2 space-y-2 {{ request()->routeIs('databerita', 'addartikel') ? 'block' : 'hidden' }}"
+                            class="py-2 space-y-2 {{ request()->routeIs('berita.index','berita.create') ? 'block' : 'hidden' }}"
                         >
                             <li>
                                 <a
-                                    href="{{ route('databerita') }}"
-                                    class="flex items-center p-2 text-base text-gray-900 rounded-lg transition duration-75 hover:bg-gray-400 dark:hover:bg-gray-700 dark:text-white group {{ request()->routeIs('databerita') ? 'bg-gray-400 dark:bg-gray-600 font-medium' : '' }}"
+                                    href="{{ route('berita.index') }}"
+                                    class="flex items-center p-2 text-base text-gray-900 rounded-lg transition duration-75 hover:bg-gray-400 dark:hover:bg-gray-700 dark:text-white group {{ request()->routeIs('berita.index') ? 'bg-gray-400 dark:bg-gray-600 font-medium' : '' }}"
                                 >
                                     <svg
-                                        class="w-6 h-6  text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white {{ request()->routeIs('databerita') ? 'text-gray-800 dark:text-white' : '' }}"
+                                        class="w-6 h-6  text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white {{ request()->routeIs('berita.index') ? 'text-gray-800 dark:text-white' : '' }}"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
@@ -406,11 +410,11 @@
                             </li>
                             <li>
                                 <a
-                                    href="{{ route('addartikel') }}"
-                                    class="flex items-center p-2 text-base text-gray-900 rounded-lg transition duration-75 hover:bg-gray-400 dark:hover:bg-gray-700 dark:text-white group {{ request()->routeIs('addartikel') ? 'bg-gray-400 dark:bg-gray-600 font-medium' : '' }}"
+                                    href="{{ route('berita.create') }}"
+                                    class="flex items-center p-2 text-base text-gray-900 rounded-lg transition duration-75 hover:bg-gray-400 dark:hover:bg-gray-700 dark:text-white group {{ request()->routeIs('berita.create') ? 'bg-gray-400 dark:bg-gray-600 font-medium' : '' }}"
                                 >
                                     <svg
-                                        class="w-6 h-6  text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white {{ request()->routeIs('addartikel') ? 'text-gray-800 dark:text-white' : '' }}"
+                                        class="w-6 h-6  text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white {{ request()->routeIs('berita.create') ? 'text-gray-800 dark:text-white' : '' }}"
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
                                     >
@@ -453,7 +457,7 @@
                         </li>
                         <li>
                             <a
-                                href="{{ route('kelolaprofil') }}"
+                                href="{{ route('profilusaha.index') }}"
                                 class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-400 dark:text-gray-200 dark:hover:bg-gray-700 {{ request()->routeIs('kelolaprofil') ?  'font-medium bg-gray-400 dark:bg-gray-600' : '' }}"
                             >
                                 <svg
@@ -534,6 +538,8 @@
 
 </body>
 </head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 
 </html>

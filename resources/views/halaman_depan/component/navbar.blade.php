@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <header x-data="{openSidebar:false}" class="absolute inset-x-0 top-0 z-50 mx-auto max-w-screen-xl">
-    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <nav class="flex flex-row items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
             @foreach ($logos as $logo)
             <a href="/" class="flex items-center">
