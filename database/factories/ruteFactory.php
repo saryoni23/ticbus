@@ -23,9 +23,9 @@ class ruteFactory extends Factory
             'kota_tujuan'   => Str::random(10),
             'jam_berangkat' => $this->faker->time($format = 'H:i:s', $max = 'now'),
             'jam_tiba' => $this->faker->time($format = 'H:i:s', $max = 'now'),
-            'kelas'   => Str::random(10),
-            'seat'   => Str::random(10),
-            'tarif'   => Str::random(10),
+            'kelas'   => $this->faker->numberBetween(1, 100),
+            'seat'   => $this->faker->numberBetween(1, 100),
+            'tarif'   => $this->faker->numberBetween(1, 100),
             'is_active'   => 1,
         ];
     }

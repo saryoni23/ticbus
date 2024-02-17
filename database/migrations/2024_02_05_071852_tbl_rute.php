@@ -15,11 +15,7 @@ return new class extends Migration
             $table->id()->unique();
             $table->string('kota_asal');
             $table->string('kota_tujuan');
-            $table->string('jam_berangkat');
-            $table->string('jam_tiba');
-            $table->string('kelas');
-            $table->string('seat');
-            $table->string('tarif');
+            $table->time('jam_berangkat');
             $table->string('is_active');
             $table->timestamps();
         });

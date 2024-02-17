@@ -8,6 +8,6 @@ class KaryawanController extends Controller
 {
     function index()
     {
-        return view('halaman_karyawan.index');
+        return view('halaman_karyawan.pages.home.index');
     }
 }

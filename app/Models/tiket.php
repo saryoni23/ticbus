@@ -5,20 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tiket extends Model
+class Tiket extends Model
 {
     use HasFactory;
-    public $table = 'tbl_tic';
-    public $filltable = [
+    protected $table = 'tbl_tiket';
+    protected $fillable = [
         'name_tiket',
-        'jenis_tiket',
+        'nama_supir',
         'harga_tiket',
-        // 'id_rutes',
-        'kategori_id',
+        'categori_id',
+        'rute_id',
         'jumlah_tiket',
     ];
+
     public function kategori()
     {
-        return $this->belongsTo(categori::class, 'kategori_id');
+        return $this->belongsTo(Kategori::class, 'categori_id');
+    }
+    public function rute()
+    {
+        return $this->belongsTo(Rute::class, 'rute_id');
     }
 }

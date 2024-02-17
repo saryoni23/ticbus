@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('visi');
             $table->string('logo');
             $table->string('singkatan_namausaha');
+            $table->string('alamat');
+            $table->string('kodepos');
             $table->timestamps();
         });
     }

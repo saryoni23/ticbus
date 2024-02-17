@@ -10,6 +10,6 @@ class UserController extends Controller
     function index()
     {
         $data = User::all();
-        return view('halaman_user.index', ['data' => $data]);
+        return view('halaman_user.pages.home.index', ['data' => $data]);
     }
 }

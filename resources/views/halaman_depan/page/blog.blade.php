@@ -11,7 +11,7 @@
         </div>
         <div class="grid gap-8 lg:grid-cols-3">
             
-            @foreach($berita as $item)
+            @forelse($berita as $item)
             <article
                 class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-end items-center mb-5 text-gray-500">
@@ -43,8 +43,13 @@
                 </div>
                 </div>
             </article>
-
-            @endforeach
+            @empty
+            <article
+            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex justify-center items-center mb-5 text-gray-500">
+                Berita belum Tersedia.
+        </article>
+            @endforelse
         </div>
     </div>
 </div>
@@ -64,3 +69,4 @@
 
 </script>
 @endsection
+

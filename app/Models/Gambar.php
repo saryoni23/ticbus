@@ -11,10 +11,5 @@ class Gambar extends Model
     public $table = 'tbl_gambar';
     protected $fillable = [
         'image',
-        'profil_id'
     ];
-    public function Profil()
-    {
-        return $this->belongsTo(Profil::class, 'profil_id');
-    }
 }

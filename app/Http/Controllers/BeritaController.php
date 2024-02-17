@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\artikel;
 use App\Models\Berita;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,9 +24,10 @@ class BeritaController extends Controller
     {
         //get posts
         $posts = Berita::latest()->paginate(5);
+        $logo = Company::all();
 
         //render view with posts
-        return view('halaman_admin.pages.posts.index', compact('posts'));
+        return view('halaman_admin.pages.posts.index', compact('posts', 'logo'));
     }
     /**
      * create
@@ -34,7 +36,8 @@ class BeritaController extends Controller
      */
     public function create(): View
     {
-        return view('halaman_admin.pages.posts.create');
+        $logo = Company::all();
+        return view('halaman_admin.pages.posts.create', ['logo' => $logo]);
     }
 
     /**
@@ -76,10 +79,11 @@ class BeritaController extends Controller
     public function show(string $id): View
     {
         //get post by ID
+        $logo = Company::all();
         $post = Berita::findOrFail($id);
 
         //render view with post
-        return view('halaman_admin.pages.posts.show', compact('post'));
+        return view('halaman_admin.pages.posts.show', compact('post', 'logo'));
     }
     /**
      * edit
@@ -90,10 +94,11 @@ class BeritaController extends Controller
     public function edit(string $id): View
     {
         //get post by ID
+        $logo = Company::all();
         $post = Berita::findOrFail($id);
 
         //render view with post
-        return view('halaman_admin.pages.posts.edit', compact('post'));
+        return view('halaman_admin.pages.posts.edit', compact('post', 'logo'));
     }
 
     /**

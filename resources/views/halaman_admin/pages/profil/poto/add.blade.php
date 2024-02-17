@@ -45,14 +45,14 @@
         </nav>
         <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
 
-            <form action="{{ route('profilusaha.store') }}" class="max-w-md mx-auto" method="POST"
-                enctype="multipart/form-data">
+            <form action="{{ route('addgambar') }}" class="mt-8 space-y-6" method="POST" enctype="multipart/form-data">
                 @csrf
-               
+                
                 <div class="grid md:grid-cols-2 md:gap-6 mt-4">
                     @error('image')
-                    <div class="alert alert-danger mt-2">
-                        {{ $message }}
+                    <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                        role="alert">
+                        <span class="font-medium">Info alert!</span> {{ $message }}
                     </div>
                     @enderror
                     <div class="relative z-0 w-full mb-5 group">
@@ -61,10 +61,10 @@
                         <input type="file" name="image" onchange="previewImage(this)" class=" @error('image') is-invalid @enderror block py-2.5 px-0 w-full text-sm
                             text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none
                             dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none
-                            focus:ring-0 focus:border-blue-600 peer" required />
+                            focus:ring-0 focus:border-blue-600 peer" />
                     </div>
                     <div id="image-preview" class="mt-2">
-                        <img src="{{ asset('picture/accounts/user.png') }}" alt="">
+                        <img src="{{ asset('picture/accounts/blank.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="flex flex-row gap-2">
@@ -73,12 +73,13 @@
                     <a href="/profilusaha"
                         class="text-white bg-warning-700 hover:bg-warning-800 focus:ring-4 focus:outline-none focus:ring-warning-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-warning-600 dark:hover:bg-warning-700 dark:focus:ring-warning-800">Kembali</a>
                 </div>
-                <fieldset disabled>
-                    <div class="mb-3">
-                        <input name="profil_id" value="{{ $profil->isNotEmpty() ? $profil->first()->id : '' }}"id="disabledTextInput" class="form-control" type="">
-                    </div>
-                </fieldset>
-                
+                @error('profil_id')
+                <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                    role="alert">
+                    <span class="font-medium">Info alert!</span> {{ $message }}
+                </div>
+                @enderror
+
 
                 <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
                     role="alert">
@@ -91,7 +92,6 @@
 </main>
 
 <script>
-
     function previewImage(input) {
         const preview = document.getElementById('image-preview');
         preview.innerHTML = '';

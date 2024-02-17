@@ -132,7 +132,6 @@
                                 </td>
                                 <td
                                     class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-white">
-
                                     {{ $item->judul }}
                                 </td>
                                 <td
@@ -281,38 +280,6 @@ toastr.success('{{ session('success') }}', 'BERHASIL!');
 toastr.error('{{ session('error') }}', 'GAGAL!');
 
 @endif
-
-    // $(document).ready(function () {
-    //     var table = $("#example")
-    //         .DataTable({
-    //             responsive: true,
-    //         })
-    //         .columns.adjust()
-    //         .responsive.recalc();
-    // });
-
-    // $("#example").DataTable({
-    //     dom: "Bfrtip",
-    //     buttons: [{
-    //         extend: "excel", // Extend the excel button
-    //         excelStyles: { // Add an excelStyles definition
-    //             cells: "2", // to row 2
-    //             style: { // The style block
-    //                 font: { // Style the font
-    //                     name: "Arial", // Font name
-    //                     size: "14", // Font size
-    //                     color: "FFFFFF", // Font Color
-    //                     b: false, // Remove bolding from header row
-    //                 },
-    //                 fill: { // Style the cell fill (background)
-    //                     pattern: { // Type of fill (pattern or gradient)
-    //                         color: "457B9D", // Fill color
-    //                     }
-    //                 }
-    //             }
-    //         },
-    //     }, ],
-    // });
 
 </script>
 

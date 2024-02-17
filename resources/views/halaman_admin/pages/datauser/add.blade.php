@@ -44,7 +44,7 @@
             </ol>
         </nav>
         <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-            <form action="/adduser" class="max-w-md mx-auto" method="POST" enctype="multipart/form-data">
+            <form action="{{route('datauser.store')}}" class="max-w-md mx-auto" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if ($errors->any())
                 <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -86,6 +86,9 @@
                         placeholder=" " required />
                     <label for="password"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+                    <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 flex items-center pr-3 focus:outline-none">
+                        <span id="toggleButtonLabel" class="text-gray-800 dark:text-white">Tampilkan</span>
+                    </button>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="password" name="repeat_password" id="floating_repeat_password"
@@ -94,6 +97,9 @@
                     <label for="floating_repeat_password"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm
                         password</label>
+                    <button type="button" onclick="togglePasswordVisibilityRepeat()" class="absolute inset-y-0 right-0 flex items-center pr-3 focus:outline-none">
+                        <span id="toggleButtonLabelRepeat" class="text-gray-800 dark:text-white">Tampilkan</span>
+                    </button>
                 </div>
 
                 <div class="relative max-w-sm mb-5 group">
@@ -156,6 +162,31 @@
         }
     }
 
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var toggleButtonLabel = document.getElementById("toggleButtonLabel");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleButtonLabel.textContent = "Sembunyikan";
+        } else {
+            passwordInput.type = "password";
+            toggleButtonLabel.textContent = "Tampilkan";
+        }
+    }
+
+    function togglePasswordVisibilityRepeat() {
+        var repeatPasswordInput = document.getElementById("floating_repeat_password");
+        var toggleButtonLabelRepeat = document.getElementById("toggleButtonLabelRepeat");
+
+        if (repeatPasswordInput.type === "password") {
+            repeatPasswordInput.type = "text";
+            toggleButtonLabelRepeat.textContent = "Sembunyikan";
+        } else {
+            repeatPasswordInput.type = "password";
+            toggleButtonLabelRepeat.textContent = "Tampilkan";
+        }
+    }
 </script>
 
 

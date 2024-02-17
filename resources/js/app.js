@@ -8,6 +8,6 @@ import "./datepicker";
 
 import "./toggleButton";
 
-import { Modal, Ripple, initTE } from "tw-elements";
+import { Modal, Ripple, initTE, Input, Timepicker } from "tw-elements";
 
-initTE({ Modal, Ripple });
+initTE({ Modal, Ripple, Input, Timepicker });

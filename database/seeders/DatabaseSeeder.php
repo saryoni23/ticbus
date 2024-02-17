@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        // \App\Models\artikel::factory(20)->create();
-        // \App\Models\categori::factory(20)->create();
-        // \App\Models\tiket::factory(20)->create();
+        // \App\Models\Berita::factory(20)->create();
+        // \App\Models\Kategori::factory(20)->create();
+        // \App\Models\Tiket::factory(20)->create();
         // \App\Models\rute::factory(20)->create();
         // \App\Models\transaksi::factory(20)->create();
         // \App\Models\transaksitiket::factory(20)->create();
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
     }
 }

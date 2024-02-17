@@ -44,8 +44,10 @@
 
             <div class="mx-auto max-w-2xl">
                 <div class="container flex flex-col items-center mb-2 ">
-                    <div class="w-full max-w-xl p-8 scroll-pb-16 space-y-8 sm:p-8 bg-slate-100 rounded-lg shadow-2xl dark:bg-gray-800">
-                        <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                    <div
+                        class="w-full max-w-xl p-8 scroll-pb-16 space-y-8 sm:p-8 bg-slate-100 rounded-lg shadow-2xl dark:bg-gray-800">
+                        <div
+                            class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                             <a href="{{ route("auth") }}"
                                 class="w-5 h-5 mr-3 flex justify-center items-center  text-slate-300 hover:border-primary hover:bg-primary hover:text-white">
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -125,21 +127,24 @@
                                                 d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                         </svg>
                                     </div>
-                                    <input datepicker type="text" name="tgllahir"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Tanggal Lahir">
+                                    <input datepicker datepicker-autohide type="text" name="tgllahir"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Tanggal Lahir">
                                 </div>
                             </div>
 
-                            <div>
+                            <div class="relative">
                                 <label for="password"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                                    password</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                                 <input type="password" name="password" id="password" placeholder="••••••••"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required>
+                                    required />
+                                <button type="button" id="togglePassword"
+                                    class="absolute inset-y-12 right-0 flex items-center pr-3 focus:outline-none">
+                                    <span id="toggleButtonText" class="text-gray-500 dark:text-white">Tampilkan</span>
+                                </button>
                             </div>
-                            <div>
+                            <div class="relative">
                                 <label for="confirm-password"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
                                     password</label>
@@ -147,7 +152,13 @@
                                     placeholder="••••••••"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     required>
+                                <button type="button" id="toggleConfirmPassword"
+                                    class="absolute inset-y-12 right-0 flex items-center pr-3 focus:outline-none">
+                                    <span id="toggleConfirmPasswordText"
+                                        class="text-gray-500 dark:text-white">Tampilkan</span>
+                                </button>
                             </div>
+
                             <div>
                                 <label for="number"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor telepon /
@@ -158,21 +169,29 @@
 
                             </div>
                             <div>
-                                <label for="gambar" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
+                                <label for="gambar"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar</label>
                                 <div class="flex flex-col items-center justify-center w-full">
                                     <label for="gambar-input" class="relative cursor-pointer">
                                         <!-- Gambar pratinjau -->
                                         <img id="preview-image" class="hidden" src="#" alt="Preview" />
                                         <!-- Input gambar tersembunyi -->
-                                        <input type="file" id="gambar-input" name="gambar" accept=".jpg,.jpeg,.png,.gif" class="absolute inset-0 opacity-0 w-full h-full cursor-pointer" required>
+                                        <input type="file" id="gambar-input" name="gambar" accept=".jpg,.jpeg,.png,.gif"
+                                            class="absolute inset-0 opacity-0 w-full h-full cursor-pointer" required>
                                         <!-- Tulisan dan ikon "Click or drag and drop" -->
                                         <div id="file-info" class="flex flex-col items-center justify-center">
-                                            <svg class="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                            <svg class="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 20 16">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                             </svg>
                                             <div class="text-center">
-                                                <p class="mb-1 text-sm font-semibold text-gray-500 dark:text-gray-400">Click or drag and drop a file here</p>
-                                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, GIF up to 10MB</p>
+                                                <p class="mb-1 text-sm font-semibold text-gray-500 dark:text-gray-400">
+                                                    Click or drag and drop a file here</p>
+                                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, GIF up to
+                                                    10MB</p>
                                             </div>
                                         </div>
                                     </label>
@@ -210,7 +229,37 @@
                 reader.readAsDataURL(file);
             }
         });
+        const passwordInput = document.getElementById("password");
+        const toggleButton = document.getElementById("togglePassword");
+        const toggleButtonText = document.getElementById("toggleButtonText");
+
+        toggleButton.addEventListener("click", function () {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleButtonText.textContent = "Sembunyikan";
+            } else {
+                passwordInput.type = "password";
+                toggleButtonText.textContent = "Tampilkan";
+            }
+        });
+
+        const confirmPasswordInput = document.getElementById("confirm-password");
+        const toggleConfirmPasswordButton = document.getElementById("toggleConfirmPassword");
+        const toggleConfirmPasswordText = document.getElementById("toggleConfirmPasswordText");
+
+        toggleConfirmPasswordButton.addEventListener("click", function () {
+            if (confirmPasswordInput.type === "password") {
+                confirmPasswordInput.type = "text";
+                toggleConfirmPasswordText.textContent = "Sembunyikan";
+            } else {
+                confirmPasswordInput.type = "password";
+                toggleConfirmPasswordText.textContent = "Tampilkan";
+            }
+        });
+
     </script>
+
+
 </body>
 
 </html>

@@ -14,7 +14,7 @@
                             {{ $post->judul }}
                         </h1>
                         <img src="{{ asset('storage/posts/'.$post->image) }}" class="w-100 rounded" />
-                        <p class="mb-8  font-normal text-gray-500   dark:text-gray-400">
+                        <p class="mb-8  font-normal text-gray-500  dark:text-gray-400">
                             {!! $post->isi !!}</p>
 
 

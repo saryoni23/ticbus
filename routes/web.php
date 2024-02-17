@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\KelolaProfilController;
 use App\Http\Controllers\UproleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -43,31 +44,27 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user',             [UserController::class,     'index'])->name('user')->middleware('userAkses:user');
     Route::get('/karyawan',         [KaryawanController::class, 'index'])->name('karyawan')->middleware('userAkses:karyawan');
 
-
-    // Route::get('/table',            [AdminController::class,    'table'])->name('table')->middleware('userAkses:admin');
     //Route Untuk Mengelola User
     Route::resource('/datauser', \App\Http\Controllers\DataUserController::class)->middleware('userAkses:admin');
-    // Route::get('/datauser',         [AdminController::class,    'datauser'])->name('datauser')->middleware('userAkses:admin');
-    // Route::get('/adduser',          [AdminController::class,    'tambah']);
-    // Route::post('/adduser',          [AdminController::class,    'create']);
-    // Route::get('/edituser/{id}',    [AdminController::class,    'edituser']);
-    // Route::post('/edituser',       [AdminController::class,    'change']);
-    // Route::post('/hapususer/{id}',  [AdminController::class,    'hapususer']);
+
     Route::post('/uprole/{id}',     [UproleController::class, 'uprole']);
     Route::post('/downrole/{id}',     [UproleController::class, 'downrole']);
 
-    //Route Untuk Mengelola Berita
-    Route::get('/databerita',       [AdminController::class,    'databerita'])->name('databerita')->middleware('userAkses:admin');
-    Route::get('/tambahberita',     [AdminController::class,    'tambahberita'])->name('tambahberita')->middleware('userAkses:admin');
-    Route::get('/editberita/{id}',  [AdminController::class,    'editberita'])->name('editberita')->middleware('userAkses:admin');
-    Route::post('/hapusberita/{id}', [AdminController::class,    'hapusberita'])->name('hapusberita')->middleware('userAkses:admin');
 
     //Route Untuk Mengelola Profil Halaman Perusahaan
     Route::post('/logout',          [AuthController::class,     'logout'])->name('logout');
 
-    Route::resource('/berita', \App\Http\Controllers\BeritaController::class);
-    Route::resource('/profilusaha', \App\Http\Controllers\KelolaProfilController::class);
-    Route::get('/kelolaprofil',     [AdminController::class,    'kelolaprofil'])->name('kelolaprofil')->middleware('userAkses:admin');
+    Route::resource('/berita', \App\Http\Controllers\BeritaController::class)->middleware('userAkses:admin');
+    Route::resource('/beritakar', \App\Http\Controllers\BeritaKarController::class)->middleware('userAkses:karyawan');
+    Route::resource('/profilusaha', \App\Http\Controllers\HalamanDepan\KelolaProfilController::class)->middleware('userAkses:admin');
+    Route::resource('/kelolatiket', \App\Http\Controllers\TiketController::class)->middleware('userAkses:admin');
+    Route::resource('/kelolarute', \App\Http\Controllers\RuteController::class)->middleware('userAkses:admin');
+    // Route::resource('/profilusaha', \App\Http\Controllers\HalamanDepan\KelolaProfil1Controller::class)->middleware('userAkses:admin');
+
+    // Route::get('/profilusaha/{id}',     [KelolaProfilController::class,    'showgambar'])->name('profilgambar')->middleware('userAkses:admin');
     Route::get('/profilshow/{id}',     [AdminController::class,    'profilshow'])->name('profilshow')->middleware('userAkses:admin');
     Route::put('/profilupdate/{id}',     [AdminController::class,    'profilupdate'])->name('profilupdate')->middleware('userAkses:admin');
+    Route::post('/addgambar', [AdminController::class, 'addgambar'])->name('addgambar');
+    Route::get('/buatprofil', [AdminController::class, 'buatprofil'])->name('buatprofil');
+    Route::post('/buatprofilcreate', [AdminController::class, 'buatprofilcreate'])->name('buatprofilcreate');
 });

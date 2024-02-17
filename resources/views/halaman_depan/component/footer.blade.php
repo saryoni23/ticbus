@@ -7,21 +7,30 @@
                 href="#"
                 class="flex justify-center items-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white"
             >
-            @foreach ($logos as $logo)
+            @forelse ($logos as $logo)
                 <img
                     class="h-8 mr-3"
-                    src="{{ asset('picture/logo/'.$logo->logo) }}"
+                    src="{{ asset('/storage/logo/'.$logo->logo) }}"
                     alt="Logo"
                 />
-                {{ $logo->singkatan_namausaha }}
 
+                {{ $logo->singkatan_namausaha }}
+               
+                
             </a>
-            @endforeach
+            
             <span
                 class="block text-sm text-center text-gray-500 dark:text-gray-400"
                 >© {{ date("Y") }}
                 <a href="#" class="hover:underline">Saryoni™</a>| {{ $logo->nama_perusahaan }}.
             </span>
+            @empty 
+            <svg class="w-10 h-10 text-gray-800 dark:text-white" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M4 5a2 2 0 0 0-2 2v2.5c0 .6.4 1 1 1a1.5 1.5 0 1 1 0 3 1 1 0 0 0-1 1V17a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a1 1 0 0 0-1-1 1.5 1.5 0 1 1 0-3 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2H4Z" />
+                    </svg>
+            @endforelse 
             <ul class="flex justify-center mt-5 space-x-5">
                 <li>
                     <a

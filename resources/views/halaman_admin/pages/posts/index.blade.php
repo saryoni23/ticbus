@@ -106,7 +106,7 @@
                                                         class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-white">
                                                         {!! $post->isi !!}</td>
                                                     <td class="text-center">
-                                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        <form onsubmit="return confirmHapus(event)"
                                                             action="{{ route('berita.destroy', $post->id) }}"
                                                             method="POST">
                                                             <a href="{{ route('berita.show', $post->id) }}"
@@ -151,10 +151,31 @@
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
+    function confirmHapus(event) {
+        event.preventDefault(); // Menghentikan form dari pengiriman langsung
+
+        Swal.fire({
+            title: 'Yakin Hapus Data?',
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: 'warning',
+            theme: 'dark',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal',
+        }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+                event.target.submit(); // Melanjutkan pengiriman form
+            } else {
+                swal('Your imaginary file is safe!');
+            }
+        });
+    }
     //message with toastr
     @if(session() -> has('success'))
 

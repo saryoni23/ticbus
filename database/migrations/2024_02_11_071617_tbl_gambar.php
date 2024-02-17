@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('tbl_gambar', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->unsignedBigInteger('profil_id');
             $table->timestamps();
-            $table->foreign('profil_id')->references('id')->on('tbl_profilusaha')->onDelete('cascade');
         });
     }
 

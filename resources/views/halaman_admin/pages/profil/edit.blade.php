@@ -49,15 +49,15 @@
                 @csrf @method('PUT')
 
                 <div class="grid md:grid-cols-2 md:gap-6 mt-4">
-                    @error('image')
+                    @error('logo')
                     <div class="alert alert-danger mt-2">
                         {{ $message }}
                     </div>
                     @enderror
                     <div class="relative z-0 w-full mb-5 group">
-                        <label for="image"
+                        <label for="logo"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Logo Perusahaan</label>
-                        <input type="file" name="image" onchange="previewImage(this)" class=" @error('image') is-invalid @enderror block py-2.5 px-0 w-full text-sm
+                        <input type="file" name="logo" onchange="previewImage(this)" class=" @error('logo') is-invalid @enderror block py-2.5 px-0 w-full text-sm
                             text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none
                             dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none
                             focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
@@ -132,7 +132,6 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace("visi");

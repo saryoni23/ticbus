@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\artikel;
 use App\Models\company;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\AuthMail;
 use App\Models\Berita;
 use App\Models\Gambar;
 use App\Models\Profil;
@@ -17,97 +13,33 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
-use function Laravel\Prompts\alert;
 
 class AdminController extends Controller
 {
     //mengelola User
     function index()
     {
-        return view('halaman_admin.pages.home.index');
-    }
-    function settings()
-    {
-        $data = User::all();
-        return view('halaman_admin.setting', ['data' => $data]);
-    }
-    function datauser()
-    {
-        //
-    }
-    function tambah()
-    {
-        // 
-    }
-    function create(Request $request)
-    {
-        //   
-    }
-    function edituser($id)
-    {
-        //
-    }
-    function change(Request $request)
-    {
-        //
+        $logo = Company::limit(1)->get();
+        return view('halaman_admin.pages.home.index', [
+            'logo' => $logo,
+        ]);
     }
     function hapususer(Request $request)
     {
+        User::where('id', $request->id)->delete();
+        Session::flash('success', 'User Dihapus');
+        return redirect()->route('datauser.index');
         //
-    }
-
-    //mengelola Berita
-    function databerita()
-    {
-        //
-    }
-    // function addberita(Request $request)
-    // {
-    //     artikel::where('id', $request->id)->();
-
-    //     return redirect('/databerita');
-    // }
-    function editberita($id)
-    {
-        $data = artikel::find($id);
-
-        return view('halaman_admin.pages.berita.editberita', ['berita' => $data]);
-    }
-    function hapusberita(Request $request)
-    {
-        artikel::where('id', $request->id)->delete();
-        // $request->session()->flash('status', 'Task was successful!');
-        Session::flash('success', 'Berhasil Hapus Data');
-
-        return redirect('/databerita');
-    }
-
-
-
-
-    // mengelola Profil Perusahaan
-    function kelolaprofil()
-    {
-        $profil = company::all();
-
-
-        return view(
-            'halaman_admin.pages.profil.index',
-            [
-                'profil' => $profil,
-
-            ]
-
-        );
     }
 
     public function profilshow(string $id): View
     {
         //get post by ID
-        $post = company::findOrFail($id);
+        $post = Company::findOrFail($id);
+        $logo = Company::limit(1)->get();
 
         //render view with post
-        return view('halaman_admin.pages.profil.show', compact('post'));
+        return view('halaman_admin.pages.profil.show', compact('post', 'logo'));
     }
     public function  profilupdate(Request $request, $id): RedirectResponse
     {
@@ -160,5 +92,76 @@ class AdminController extends Controller
 
         //render view with posts and gambar
         return view('halaman_admin.pages.profil.index', compact('posts', 'gambar'));
+    }
+    public function addgambar(Request $request)
+    {
+        $request->validate([
+            'image'         => 'required|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+        //upload image
+
+        $image = $request->file('image');
+        $image->storeAs('public/carosel', $image->hashName());
+
+        //create post
+        Gambar::create([
+            'image'     => $image->hashName(),
+        ]);
+
+        //redirect to index
+        return redirect()->route('profilusaha.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
+
+    public function buatprofil(): View
+    {
+        //get posts
+        $posts = Berita::latest()->paginate(5);
+        $logo = Company::all();
+
+        //render view with posts
+        return view('halaman_admin.pages.profil.create', compact('posts', 'logo'));
+    }
+    public function buatprofilcreate(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'nama_perusahaan'       => 'required|min:5',
+            'singkatan_namausaha'   => 'required|min:5',
+            'visi'                  => 'required|min:10',
+            'isi'                   => 'required|min:10',
+            'alamat'                => 'required|min:10',
+            'kodepos'               => 'required|min:4',
+            'logo'                  => 'required|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        // Periksa apakah ada file yang diunggah
+        if ($request->hasFile('logo')) {
+            // Unggah gambar
+            $gambar_file = $request->file('logo');
+
+            // Periksa apakah terjadi kesalahan saat mengunggah gambar
+            if ($gambar_file->isValid()) {
+                $nama_foto = $gambar_file->hashName(); // Nama file yang di-hash dengan ekstensi otomatis
+                $gambar_file->storeAs('public/logo', $nama_foto);
+
+                // Buat profil
+                Gambar::create([
+                    'nama_perusahaan'       => $request->nama_perusahaan,
+                    'singkatan_namausaha'   => $request->singkatan_namausaha,
+                    'visi'                  => $request->visi,
+                    'alamat'                => $request->alamat,
+                    'kodepos'               => $request->kodepos,
+                    'logo'                  => $nama_foto,
+                ]);
+
+                // Redirect ke indeks dengan pesan sukses
+                return redirect()->route('profilusaha.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            } else {
+                // Jika terjadi kesalahan saat mengunggah gambar
+                return redirect()->back()->withErrors(['logo' => 'Gagal mengunggah gambar.']);
+            }
+        } else {
+            // Jika tidak ada file yang diunggah
+            return redirect()->back()->withErrors(['logo' => 'Silakan unggah gambar.']);
+        }
     }
 }

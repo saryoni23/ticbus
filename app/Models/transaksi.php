@@ -17,7 +17,7 @@ class transaksi extends Model
         'no_kursi',
         'tgl_pergi',
         'total_harga',
-        'id_user',
+        'user_id',
         // 'id_rute',
         'waktu_pesan',
         'status',

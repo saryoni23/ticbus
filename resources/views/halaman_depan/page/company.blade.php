@@ -2,86 +2,41 @@
 
 @section('content')
 
-<div class="mx-auto max-w-2xl py-12 sm:py-12 lg:py-56 space-y-20">
-    <div id="indicators-carousel" class="relative w-full" data-carousel="slide">
+<div class="mx-auto max-w-2xl py-4 sm:py-12 lg:py-56 space-y-20">
+    <div id="custom-controls-gallery" class="relative w-full" data-carousel="slide">
         <!-- Carousel wrapper -->
         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-            <!-- Item 1 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                <img src="{{
-                                        asset('picture/bus/2022-05-31.jpg')
-                                    }}"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
-            <!-- Item 2 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="{{ asset('picture/bus/unnamed.jpg') }}"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
-            <!-- Item 3 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="{{
-                                        asset('picture/bus/2020-01-28 (2).jpg')
-                                    }}"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
-            <!-- Item 4 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="{{
-                                        asset('picture/bus/2020-01-28 (1).jpg')
-                                    }}"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
-            <!-- Item 5 -->
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="{{
-                                        asset('picture/bus/2023-10-15.jpg')
-                                    }}"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-            </div>
-        </div>
-        <!-- Slider indicators -->
-        <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
-            <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-                data-carousel-slide-to="0"></button>
-            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
-                data-carousel-slide-to="1"></button>
-            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
-                data-carousel-slide-to="2"></button>
-            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
-                data-carousel-slide-to="3"></button>
-            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
-                data-carousel-slide-to="4"></button>
+            @foreach($gambar as $index => $item)
+                <!-- Item {{$index + 1}} -->
+                <div class="hidden duration-700 ease-in-out {{$index == 0 ? 'block' : ''}}" data-carousel-item="{{$index == 0 ? 'active' : ''}}">
+                    <img src="{{ asset('/storage/carosel/'.$item->image) }}" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+                </div>
+            @endforeach
         </div>
         <!-- Slider controls -->
-        <button type="button"
-            class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-            data-carousel-prev>
-            <span
-                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M5 1 1 5l4 4" />
-                </svg>
-                <span class="sr-only">Previous</span>
-            </span>
-        </button>
-        <button type="button"
-            class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-            data-carousel-next>
-            <span
-                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 9 4-4-4-4" />
-                </svg>
-                <span class="sr-only">Next</span>
-            </span>
-        </button>
+        <div class="flex justify-center items-center pt-4">
+            <!-- Button for previous slide -->
+            <button type="button" class="flex justify-center items-center me-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
+                <span class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
+                    <svg class="rtl:rotate-180 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                    </svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </button>
+            <!-- Button for next slide -->
+            <button type="button" class="flex justify-center items-center h-full cursor-pointer group focus:outline-none" data-carousel-next>
+                <span class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
+                    <svg class="rtl:rotate-180 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                    <span class="sr-only">Next</span>
+                </span>
+            </button>
+        </div>
     </div>
-    @foreach ($data as $data)
+    
+    @forelse ($data as $data)
     <div class="text-center">
         <h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
             {{ $data->nama_perusahaan }}
@@ -96,7 +51,13 @@
             </p>
         </div>
     </div>
-    @endforeach
+    @empty
+            <article
+            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex justify-center items-center mb-5 text-gray-500">
+               Profil Company belum Ada.
+    </article>
+    @endforelse
 </div>
 
 
@@ -104,6 +65,8 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+    // Fungsi untuk menambahkan class pada elemen
+    function tambahStylePadaElement() {
         // Temukan elemen dengan id 'tambahstyle'
         var element = document.getElementById('tambahstyle');
 
@@ -112,6 +75,28 @@
             // Tambahkan class yang diinginkan
             element.classList.add('text-gray-900', 'dark:text-white');
         }
+    }
+
+    // Panggil fungsi untuk pertama kali saat dokumen dimuat
+    tambahStylePadaElement();
+
+    // Buat observer untuk memantau perubahan dalam DOM
+    var observer = new MutationObserver(function (mutationsList, observer) {
+        // Periksa setiap mutasi
+        for (var mutation of mutationsList) {
+            // Periksa apakah ada penambahan node
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                // Panggil fungsi untuk menambahkan style pada elemen
+                tambahStylePadaElement();
+            }
+        }
     });
+
+    // Mulai memantau perubahan dalam subtree dokumen
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+});
 
 </script>

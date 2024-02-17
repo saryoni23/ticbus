@@ -26,7 +26,7 @@
                                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        <a href="/kelolaprofil"
+                        <a href="{{ route('profilusaha.index') }}"
                             class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">Profil
                             Perusahaan</a>
                     </div>
@@ -112,8 +112,14 @@
                                                     </td>
                                                 </tr>
                                                 @empty
-                                                <div class="alert alert-danger">
-                                                    Data Post belum Tersedia.
+                                                <div class="w-full md:w-1/3 flex flex-col items-end ml-auto space-x-2 sm:space-x-3">
+                                                    <a href="{{ route('buatprofil') }}"
+                                                        class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 tombol-tambah">
+                                                        <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                                                        </svg>Buat Profil </a>
                                                 </div>
                                                 @endforelse
                                             </tbody>
@@ -174,10 +180,8 @@
                             <img src="{{ asset('/storage/carosel/'.$gambar->image) }}" class="rounded" style="width:50%" />
                         </td>
                         <td class="text-center">
-                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                action="{{ route('profilusaha.destroy', $post->id) }}" method="POST">
-                                <a href="{{ route('profilusaha.show', $post->id) }}"
-                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-info-600 rounded-lg hover:bg-info-800 focus:ring-4 focus:ring-info-300 dark:focus:ring-red-900">SHOW</a>
+                            <form onsubmit="return confirmHapus(event)"
+                                action="{{ route('profilusaha.destroy', $gambar->id) }}" method="POST">
                                     @csrf @method('DELETE')
                                     <button type="submit"
                                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
@@ -201,22 +205,32 @@
     </div>
 </main>
 
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
-    //message with toastr
-    @if(session() -> has('success'))
+     function confirmHapus(event) {
+        event.preventDefault(); // Menghentikan form dari pengiriman langsung
 
-    toastr.success('{{ session('
-        success ') }}', 'BERHASIL!');
-
-    @elseif(session() -> has('error'))
-
-    toastr.error('{{ session('
-        error ') }}', 'GAGAL!');
-
-    @endif
-
+        Swal.fire({
+            title: 'Yakin Hapus Data?',
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: 'warning',
+            theme: 'dark',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal',
+        }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+                event.target.submit(); // Melanjutkan pengiriman form
+            } else {
+                swal('Your imaginary file is safe!');
+            }
+        });
+    }
+   
 </script>
+
+
 @endif

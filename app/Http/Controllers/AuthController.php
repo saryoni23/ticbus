@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
     function index()
     {
-        return view('halaman_auth/login');
+        return view('halaman_auth.login');
     }
     function login(Request $request)
     {
@@ -54,7 +55,7 @@ class AuthController extends Controller
     }
     function create()
     {
-        return view('halaman_auth/register');
+        return view('halaman_auth.register');
     }
     function register(Request $request)
     {
@@ -85,17 +86,20 @@ class AuthController extends Controller
         $formattedDate = date('Y-m-d', strtotime($request->tgllahir));
 
 
+        // $gambar_file        = $request->file('gambar');
+        // $gambar_ekstensi    = $gambar_file->extension();
+        // $nama_gambar        = date('ymdhis') . "." . $gambar_ekstensi;
+        // $gambar_file->move(public_path('picture/accounts'), $nama_gambar);
         $gambar_file        = $request->file('gambar');
-        $gambar_ekstensi    = $gambar_file->extension();
-        $nama_gambar        = date('ymdhis') . "." . $gambar_ekstensi;
-        $gambar_file->move(public_path('picture/accounts'), $nama_gambar);
+        $nama_foto          = $gambar_file->hashName(); // Nama file yang di-hash dengan ekstensi otomatis
+        $gambar_file->storeAs('public/accounts', $nama_foto); // Simpan gambar ke direktori yang ditentukan
 
         $inforegister = [
             'fullname'      => $request->fullname,
             'email'         => $request->email,
             'password'      => $request->password,
             'nomor'         => $request->nomor,
-            'gambar'        => $nama_gambar,
+            'gambar'        => $nama_foto,
             'tgllahir'      => $formattedDate,
             'verify_key'    => $str
         ];

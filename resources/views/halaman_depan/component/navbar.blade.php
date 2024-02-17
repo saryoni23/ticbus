@@ -2,14 +2,23 @@
 <header x-data="{openSidebar:false}" class="absolute inset-x-0 top-0 z-50 mx-auto max-w-screen-xl">
     <nav class="flex flex-row items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
-            @foreach ($logos as $logo)
+
+            @forelse ($logos as $logo)
             <a href="/" class="flex items-center">
-                <img class="h-8 mr-3" src="{{ asset('picture/logo/'.$logo->logo) }}" alt="Logo" />
+                <img class="h-8 mr-3" src="{{ asset('/storage/logo/'.$logo->logo) }}" alt="Logo" />
                 <span
                     class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 dark:text-white">{{ $logo->singkatan_namausaha }}</span>
             </a>
-            @endforeach
+            @empty
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 24 24">
+                <path
+                    d="M4 5a2 2 0 0 0-2 2v2.5c0 .6.4 1 1 1a1.5 1.5 0 1 1 0 3 1 1 0 0 0-1 1V17a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a1 1 0 0 0-1-1 1.5 1.5 0 1 1 0-3 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2H4Z" />
+            </svg>
+            @endforelse
+
         </div>
+
         <div class="flex lg:hidden">
             <button @click="openSidebar=true" type="button"
                 class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
@@ -31,6 +40,7 @@
             <a href="/company"
                 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ Request::path()=='company' ? 'active':'' }}">Company</a>
         </div>
+
         <div class="hidden lg:flex lg:flex-1 lg:justify-end space-x-4">
             <button id="theme-toggle" type="button"
                 class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1">
@@ -51,6 +61,7 @@
                 @else Login | Register @endif
                 <span aria-hidden="true">&rarr;</span></a>
         </div>
+
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
     <div x-show="openSidebar" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
@@ -60,9 +71,11 @@
         aria-modal="true">
         <!-- Background backdrop, show/hide based on slide-over state. -->
 
+
         <div
             class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white dark:bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div class="flex items-center justify-between">
+
                 <a href="/" class="flex items-center">
                     <img class="h-8 mr-3" src="{{ asset('picture/logo/logo1.png') }}" alt="Logo" />
 
@@ -79,7 +92,9 @@
             </div>
             <div class="mt-6 flow-root">
                 <div class="-my-6 divide-y divide-gray-500/10">
+
                     <div class="space-y-2 py-6">
+
                         <a href="/"
                             class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-300  hover:text-black">Home</a>
                         <a href="/blog"
@@ -96,6 +111,7 @@
                             {{ Auth::user()->fullname }} @else Login | Register
                             @endif</a>
                     </div>
+
                 </div>
             </div>
         </div>

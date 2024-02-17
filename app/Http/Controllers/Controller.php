@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\artikel;
+
 use App\Models\Berita;
 use App\Models\company;
-use App\Models\Profil;
+use App\Models\Gambar;
+use App\Models\Home;
+use App\Models\Tiket;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -17,10 +19,14 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     public function index()
     {
-        $logo = company::limit(1)->get();
+        $logo   = company::limit(1)->get();
+        $data   = Home::all();
+        $gambar = Gambar::all();
         return view('halaman_depan.page.home', [
             'title' => 'Home',
-            'logos' => $logo
+            'logos' => $logo,
+            'data'  => $data,
+            'gambar' => $gambar,
         ]);
     }
     public function blog()
@@ -58,22 +64,26 @@ class Controller extends BaseController
 
     {
         $logo = company::limit(1)->get();
+        $tiket = Tiket::limit(6)->get();
 
         return view('halaman_depan.page.tiket', [
             'title' => 'Tiket',
-            'logos' => $logo
+            'logos' => $logo,
+            'tiket' => $tiket
         ]);
     }
     public function company(): View
     {
         $data = company::all();
         $logo = company::all();
+        $gambar = Gambar::all();
 
 
         return view('halaman_depan.page.company', [
-            'title' => 'Company',
-            'data' => $data,
-            'logos' => $logo
+            'title'     => 'Company',
+            'data'      => $data,
+            'logos'     => $logo,
+            'gambar'    => $gambar,
         ]);
     }
 }

@@ -5,20 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rute extends Model
+class Rute extends Model
 {
     use HasFactory;
     public $table = 'tbl_rute';
-    public $filltable = [
-        'id_rute',
+    protected $fillable = [
         'kota_asal',
         'kota_tujuan',
         'jam_berangkat',
-        'jam_tiba',
-        'kelas',
-        'seat',
-        'tarif',
         'is_active',
     ];
-    protected $hidden;
 }
